@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const signingSecret = precesss.env.CLERK_WEBHOOK_SIGNING_SECRET;
+    const signingSecret = precess.env.CLERK_WEBHOOK_SIGNING_SECRET;
     if (!signingSecret) {
       res.status(503).json({ messsage: "Webhook secret is not provided" });
       return;
@@ -16,9 +16,11 @@ router.post("/", async (req, res) => {
     const payload = Buffer.isBuffer(req.body)
       ? req.body.toString("utf8")
       : String(req.body);
+
     const request = new Request("http://internal/webhooks/clerk", {
       method: "POST",
-      header: new Headers(req, headers),
+    //   header: new Headers(req, headers),
+      headers : req.headers,
       body: payload,
     });
 
