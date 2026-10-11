@@ -11,6 +11,7 @@ import {clerkMiddleware} from "@clerk/express"
 
 import User from "./models/user.model.js";
 import { connectDB } from "./lib/db.js";
+import clerkWebhook  from "./webhooks/clerk.webhook.js"
 
 const app = express();
 const port = process.env.PORT;

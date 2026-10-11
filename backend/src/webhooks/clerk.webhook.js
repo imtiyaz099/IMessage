@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import User from "../models/user.model.js";
 import { verifyWebhook } from "@clerk/backend/webhooks";
 
@@ -55,3 +55,6 @@ router.post("/", async (req, res) => {
     res.status(400).json({message : "Webhook verification failed"});
   }
 });
+
+
+export default router;
